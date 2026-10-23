@@ -13,22 +13,6 @@
   --color-accent-muted: #4a5868;
 }
 
-/* Custom continuous marquee loop animations */
-@keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-33.3333%); }
-}
-
-.animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 45s linear infinite;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
-}
-
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -52,6 +36,35 @@
 html {
   scroll-behavior: smooth;
   background-color: #0b101a;
+}
+
+body {
+  background-color: #0b101a;
+}
+
+/* Keep anchored sections clear of the fixed header */
+[id] {
+  scroll-margin-top: 88px;
+}
+
+:focus-visible {
+  outline: 2px solid #a5b1c0;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Founder portrait — soft edge blend; center stays fully visible */

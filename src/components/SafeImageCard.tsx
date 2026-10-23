@@ -43,8 +43,9 @@ export default function SafeImageCard({
   return (
     <img
       src={src}
-      alt=""
-      aria-hidden="true"
+      alt={alt}
+      loading="lazy"
+      decoding="async"
       onError={handleError}
       className={`h-full w-full bg-[#0B101A] ${className}`}
       style={{ objectFit, objectPosition }}

@@ -1,20 +1,35 @@
+export type VentureKind = "Entity" | "Product" | "Initiative";
+export type VentureStatus = "Operating" | "In development";
+
 export interface Venture {
   id: string;
   name: string;
-  logoUrl?: string;
-  tagline: string;
-  mission: string;
-  purpose: string;
-  currentFocus: string;
-  futureVision: string;
+  kind: VentureKind;
+  /** Legal form or product category, e.g. "Limited Liability Partnership" */
+  entityType: string;
+  /** Sanket's role. Omit when no role has been established. */
+  role?: string;
+  status: VentureStatus;
+  /** Parent entity or brand, e.g. "Smarkitals Technologies India Pvt Ltd" */
+  parent?: string;
+  summary: string;
+  /** What is offered today */
+  available?: string[];
+  /** Work that is planned or being built, never presented as live */
+  inDevelopment?: string[];
+  note?: string;
+  /** Only set for links that have been checked and resolve to the right site */
+  verifiedLink?: { label: string; href: string };
 }
 
-export interface ExpertiseItem {
+export interface ServiceGroup {
   id: string;
   title: string;
-  description: string;
   iconName: string;
-  details: string[];
+  whoItHelps: string;
+  problems: string[];
+  deliverables: string[];
+  note?: string;
 }
 
 export interface TimelineEvent {
@@ -23,32 +38,23 @@ export interface TimelineEvent {
   description: string;
 }
 
-export interface MetricItem {
-  label: string;
-  value: number;
-  suffix: string;
-}
-
 export interface Article {
   id: string;
   title: string;
   category: string;
-  readTime: string;
   summary: string;
-  date: string;
-  content?: string;
+  /** Full text. Articles without it are shown as previews only. */
+  content?: string[];
 }
 
-export interface MediaItem {
+export interface WritingProject {
   id: string;
-  title: string;
-  type: 'Workshop' | 'Guest Session' | 'Panel' | 'Business Event' | 'Podcast' | 'Conversation';
-  date: string;
-  location?: string;
+  name: string;
+  format: string;
   description: string;
-  imageUrl?: string;
-  objectPosition?: string;
-  objectFit?: "cover" | "contain";
+  status?: string;
+  /** Only set for links that have been verified */
+  href?: string;
 }
 
 export interface Testimonial {
@@ -57,9 +63,11 @@ export interface Testimonial {
   author: string;
   role: string;
   company: string;
+  /** Where the quote came from (e.g. LinkedIn recommendation URL). Required to publish. */
+  source?: string;
 }
 
-export interface PhilosophyPrinciple {
+export interface Principle {
   title: string;
   description: string;
 }
